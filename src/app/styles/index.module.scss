@@ -18,7 +18,22 @@
     width: 100%;
     height: 30rem;
 
-    background-color: $cyan;
+    background: url("/yappariameha.jpg");
+    background-size: cover;
+
+    &::before {
+      content: "";
+
+      position: absolute;
+
+      top: 0;
+      left: 0;
+
+      width: 100%;
+      height: 100%;
+
+      background: $opac-dark-gray;
+    }
 
     h1 {
       font-size: 2rem;
@@ -30,6 +45,8 @@
     #hero_text_one {
       position: absolute;
       left: 30rem;
+
+      // mix-blend-mode: difference;
     }
 
     #hero_text_two {
@@ -57,14 +74,12 @@
   #about {
     position: relative;
 
-    bottom: 8rem;
-
     @include flex;
     column-gap: 5rem;
 
     margin: 5rem 0;
 
-    width: 50rem;
+    width: 40rem;
     height: 20rem;
 
     border-radius: 2rem;
@@ -106,6 +121,8 @@
     width: 100%;
     min-height: 50rem;
 
+    padding: 5rem 0;
+
     overflow: hidden;
 
     background-color: $white;
@@ -119,6 +136,10 @@
       border-radius: 7.5rem;
 
       cursor: pointer;
+
+      overflow: hidden;
+
+      box-shadow: 0.5rem 0.5rem 2.5rem 0rem $opac-dark-gray;
 
       transition: filter 0.5s ease;
 
@@ -145,10 +166,18 @@
 
         opacity: 0;
         transition: opacity 0.3s ease-in;
-    
-        span {
-          font-size: 5rem;
+
+        a {
+          text-decoration: none;
+          
+          span {
+            font-size: 5rem;
+
+            user-select: none;
         }
+        }
+    
+        
       }
     
       &:hover .play_button {
@@ -163,5 +192,19 @@
     .song:nth-of-type(even) {
       left: 15rem;
     }
+
+    .song:nth-child(1) .song_image {
+      object-position: 0%;
+    }
+  }
+
+  #albums {
+    @include flex(flex-start, center, column);
+
+
+    width: 100%;
+    min-height: 20rem;;
+
+    background-color: $cyan;
   }
 }
