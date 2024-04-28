@@ -1,4 +1,4 @@
-// Color variables
+// Color variables.
 
 $white: rgba(245, 245, 245, 1);
 
@@ -6,6 +6,7 @@ $dark-gray: rgba(33, 36, 39, 1);
 $opac-dark-gray: rgba(33, 36, 39, 0.25);
 $cyan: rgba(35, 177, 193);
 
+// Default Flex.
 @mixin flex(
   $justify-content: center,
   $align-items: center,
@@ -15,4 +16,15 @@ $cyan: rgba(35, 177, 193);
   justify-content: $justify-content;
   align-items: $align-items;
   flex-direction: $flex-direction;
+}
+
+// Common styles for border-radius and box-shadow
+$common-border-radius: 2rem;
+$common-box-shadow: 0.5rem 0.5rem 2.5rem 0rem $opac-dark-gray;
+
+// Styles for cards
+.card {
+  border-radius: $common-border-radius;
+
+  box-shadow: $common-box-shadow;
 }

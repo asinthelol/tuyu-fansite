@@ -1,0 +1,54 @@
+@use 'global' as *;
+
+// Styles for the about section.
+#about {
+  position: relative;
+
+  @include flex(flex-start, center, column);
+  row-gap: -5rem;
+
+  width: 100%;
+  height: 40rem;
+
+    h2 {
+      font-size: 2rem;
+      letter-spacing: 0.5rem;
+    }
+
+  // Container for artist logo and information.
+  #artist-area {
+    @include flex(center, center, row);
+    column-gap: 5rem;
+
+    width: 75%;
+    height: 70%;
+
+    #logo {
+      @include flex(flex-end, center, row);
+      width: 25%;
+
+      img {
+        max-width:12rem;
+
+        border-radius: 6rem;
+
+        object-fit: cover;
+        object-position: 35%;
+    
+      }
+    }
+
+    #artist-info {
+      @include flex(center, flex-start, column);
+
+      width: 30%;
+      height: 12rem;
+
+      p {
+        font-size: 1.25rem;
+        text-align: justify;
+        line-height: 1.75rem;
+      }
+    }
+  }
+}

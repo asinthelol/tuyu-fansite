@@ -1,12 +1,14 @@
+import React from "react";
 import styles from "../app/styles/index.module.scss";
 import RootLayout from "./layout";
 import About from "./components/about";
 import Hero from "./components/hero";
-import Discography from "./components/discography";
-import Albums from "./components/albums";
+import Music from "./components/music";
+import Discography from "./components/Discography";
 import Footer from "./components/footer";
+import "./styles/global.scss";
 
-export default function Index() {
+export default function Index(): JSX.Element {
   return (
     <>
 
@@ -16,8 +18,8 @@ export default function Index() {
         <Hero />
         <About />
 
+        <Music />
         <Discography />
-        <Albums />
       </main>
       <Footer />
     </RootLayout>
