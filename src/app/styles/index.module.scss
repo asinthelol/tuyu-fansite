@@ -9,6 +9,13 @@
   width: 100%;
   min-height: 100vh;
 
+  .card {
+
+    border-radius: 2rem;
+
+    box-shadow: 0.5rem 0.5rem 2.5rem 0rem $opac-dark-gray;
+  }
+
   #hero {
     position: relative;
 
@@ -156,7 +163,7 @@
         filter: grayscale(0.5);
       }
 
-      .play_button {
+      .play-button {
         position: absolute;
         top: 50%;
         left: 50%;
@@ -174,13 +181,13 @@
             font-size: 5rem;
 
             user-select: none;
-        }
+          }
         }
     
         
       }
     
-      &:hover .play_button {
+      &:hover .play-button {
         opacity: 1;
       }
     }
@@ -196,15 +203,5 @@
     .song:nth-child(1) .song_image {
       object-position: 0%;
     }
-  }
-
-  #albums {
-    @include flex(flex-start, center, column);
-
-
-    width: 100%;
-    min-height: 20rem;;
-
-    background-color: $cyan;
   }
 }
