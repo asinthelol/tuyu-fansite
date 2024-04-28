@@ -4,7 +4,7 @@
 ## How To Use
 **To run Visual Circle, follow these steps**
 
-1. Clone the reposity in terminal:
+1. Clone the repository in terminal:
 ```bash
 git clone https://github.com/asinthelol/tuyu-fansite.git
 ```
