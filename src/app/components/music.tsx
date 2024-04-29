@@ -1,43 +1,19 @@
-import React from "react";
-import styles from '../styles/discography.module.scss';
+"use client";
+
+import React, { useState } from "react";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+import styles from "../styles/music.module.scss";
+import songs from "../json/songs.json";
 import { Poppins } from "next/font/google";
+
 const poppins = Poppins({
   subsets: ["latin"],
-  weight: "400"
+  weight: "400",
 });
 
-// Data for songs
-const songs = [
-  {
-    src: 'songs/yappariameha.jpg',
-    alt: "TUYU - 'It's Raining After All'",
-    link: 'https://www.youtube.com/watch?v=D0ehC_8sQuU',
-  },
-  {
-    src: 'songs/kuraberarekko.jpeg',
-    alt: "TUYU - 'Compared Child (Remix)'",
-    link: 'https://www.youtube.com/watch?v=4TmzJzGXbB4',
-  },
-  {
-    src: 'songs/shuutennosakiga.jpg',
-    alt: "TUYU - 'If There Was An Endpoint.'",
-    link: 'https://www.youtube.com/watch?v=vcw5THyM7Jo',
-  },
-  {
-    src: 'songs/dorono.png',
-    alt: "TUYU - 'Being low as dirt, taking what's important from me'",
-    link: 'https://www.youtube.com/watch?v=M7FH1dL51oU',
-  },
-  {
-    src: 'songs/daemonisch.png',
-    alt: "TUYU - 'Dämonisch'",
-    link: 'https://www.youtube.com/watch?v=Wx08V5jPEwg',
-  },
-];
-
 // Exactly what it suggests.
-const PlayButton = ({ link }: { link: string}) => (
-  <div className={styles['play-button']}>
+const PlayButton = ({ link }: { link: string }) => (
+  <div className={styles["play-button"]}>
     <a href={link} target="_blank" rel="noopener noreferrer">
       <span className="material-symbols-outlined" draggable={false}>
         play_arrow
@@ -47,21 +23,77 @@ const PlayButton = ({ link }: { link: string}) => (
 );
 
 export default function Music() {
+  // Track the current song index in the carousel
+  const [cSongIndex, setSongIndex] = useState(0);
+
+  const cycleIndex = (increment: number) =>
+    setSongIndex((cSongIndex + increment + songs.length) % songs.length);
+
+  // Indexes for the current, previous, and next song
+  const indexes = [
+    {
+      index: (cSongIndex - 1 + songs.length) % songs.length,
+      className: styles["song-previous"],
+    },
+    {
+      index: cSongIndex,
+      className: styles["song-current"],
+    },
+    {
+      index: (cSongIndex + 1) % songs.length,
+      className: styles["song-next"],
+    },
+  ];
+
   return (
-    <section id={styles.discography}>
+    <section id={styles.music}>
       <h2 className={poppins.className}>MUSIC VIDEOS</h2>
-      <div id={styles['song-area']}>
-        {songs.map((song, index) => (
-          <div key={index} className={styles.song}>
-            <img
-              className={styles['song-image']}
-              src={song.src}
-              alt={song.alt}
-              draggable={false}
-            />
-            <PlayButton link={song.link} />
-          </div>
-        ))}
+
+      <div id={styles["song-area"]}>
+        <button
+          className={styles["arrow-button"]}
+          aria-label="left-button-slider"
+          onClick={() => cycleIndex(-1)}
+        >
+          <span className="material-symbols-outlined">navigate_before</span>
+        </button>
+
+        <TransitionGroup className={styles["css-transition"]}>
+          {/* Maps through the song indexes to render each song */}
+          {indexes.map((i) => {
+            return (
+              <CSSTransition
+                key={i.index}
+                timeout={300}
+                classNames={{
+                  enter: styles["enter"],
+                  enterActive: styles["enter-active"],
+                  exit: styles["exit"],
+                  exitActive: styles["exit-active"],
+                }}
+              >
+                <div className={`${styles.song} ${i.className}`}>
+                  <img
+                    className={styles["song-image"]}
+                    src={songs[i.index].src}
+                    alt={songs[i.index].alt}
+                    draggable={false}
+                    loading="lazy"
+                  />
+                  <PlayButton link={songs[i.index].link} />
+                </div>
+              </CSSTransition>
+            );
+          })}
+        </TransitionGroup>
+
+        <button
+          className={styles["arrow-button"]}
+          aria-label="right-button-slider"
+          onClick={() => cycleIndex(1)}
+        >
+          <span className="material-symbols-outlined">navigate_next</span>
+        </button>
       </div>
     </section>
   );

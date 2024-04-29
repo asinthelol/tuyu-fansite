@@ -1,97 +1,252 @@
-@use 'global' as *;
+@use "global" as *;
 
-// Properties for all songs
-@mixin song-base {
-  @extend .card;
-
-  position: relative;
-
-  width: 24rem;
-  height: 13.5rem;
-
-  cursor: pointer;
-  overflow: hidden;
-
-  transition: filter 0.3s ease;
-
-  &:hover {
-    filter: grayscale(0.5);
-  }
-}
-
-// Styles for Discography section.
-#discography {
-  @include flex(center, center, column);
-  row-gap: 3rem;
-
+// Styles for the Albums section.
+#albums {
+  @include flex(space-evenly, center, column);
 
   width: 100%;
-  height: 45rem;
+  min-height: 45rem;
 
-  background-color: $cyan;
+  background-color: $white;
 
-  // The title of the section.
   h2 {
     font-size: 2rem;
     letter-spacing: 0.5rem;
-    margin-bottom: 2rem;
   }
 
-  // Container for the song cards.
-  #song-area {
-    position: relative;
-
-    bottom: 5rem;
-
+  // Container for the album cards.
+  #album-area {
     @include flex;
-    column-gap: 2rem;
+    column-gap: 5rem;
 
-    width: 90%;
-    height: 80%;
+    width: 100%;
+
+    // The actual cards.
+    .album {
+      position: relative;
+
+      @include flex(space-between, center, column);
+      row-gap: 2rem;
+
+      @extend .card;
+
+      margin: 5rem 0;
+
+      width: 20rem;
+      min-height: 40rem;
+
+      background-color: $white;
+
+      // Banner that shows album cover.
+      .album-banner {
+        position: relative;
+
+        @include flex(flex-end, center, column);
+
+        width: 65%;
+        height: 20rem;
+
+        border-radius: 0 0 10rem 10rem;
+
+        &::before {
+          content: "";
+          position: absolute;
+
+          opacity: 0;
+
+          width: 100%;
+          height: 100%;
+
+          border-radius: 0 0 10rem 10rem;
+
+          background: rgba(0, 0, 0, 0.5);
+
+          transition: opacity 0.3s ease;
+        }
+
+        // Show overlay (darkens the image) and album title on hover.
+        &:hover {
+          &::before,
+          p {
+            opacity: 1;
+          }
+        }
+
+        p {
+          color: $white;
+
+          position: relative;
+
+          bottom: 1rem;
+
+          opacity: 0;
+
+          transition: opacity 0.3s ease;
+        }
+      }
+
+      // Exactly as the name suggests. Redirects user to TUYU's listening page.
+      .listen-button {
+        @include flex;
+
+        margin: 1rem 0 1.5rem 0;
+
+        width: 4rem;
+        height: 4rem;
+
+        border-radius: 2rem;
+
+        background-color: $cyan;
+
+        transition: background-color 0.3s ease;
+
+        a {
+          text-decoration: none;
+          @include flex(center, center);
+
+          width: 100%;
+          height: 100%;
+
+          border-radius: 2rem;
+
+          span {
+            color: $white;
+            font-size: 2rem;
+            user-select: none;
+          }
+        }
+
+        &:hover,
+        &:focus {
+          background-color: darken($cyan, 10%);
+        }
+      }
+
+      // Container for the lists of songs.
+      .song-list {
+        @include flex(center, center, column);
+
+        width: 100%;
+        height: 55%;
+
+        border-radius: 0 0 2rem 2rem;
+
+        row-gap: 2rem;
+
+        // Only here so I can add an <hr> between each song.
+        .song-holder {
+          @include flex(center, center, row);
+          column-gap: 2rem;
+
+          width: 80%;
+          height: 2rem;
+
+          .song {
+            width: 80%;
+            height: 1.5rem;
+
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+          }
+        }
+      }
+
+      // The <hr> between each song.
+      .song-divider {
+        margin: -1.5rem 0;
+
+        width: 80%;
+
+        opacity: 0.1;
+
+        border: none;
+        border-bottom: thin solid $dark-gray;
+      }
+    }
   }
+}
 
-  // The actual cards.
-  .song {
-    @include song-base;
+// Mobile screens.
+@media screen and (max-width: 27rem) {
+  #albums {
+    min-height: 30rem;
 
-    row-gap: 1rem;
-    background: $white;
-
-    .song-image {
-      width: 100%;
-      height: 100%;
-  
-      object-fit: cover;
-    }
-  
-
-    &:hover {
-      filter: grayscale(0.5);
+    h2 {
+      font-size: 1.5rem;
     }
 
-    // Play button that appears on hover.
-    .play-button {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+    #album-area {
+      @include flex(center, center, column);
+      row-gap: 2rem;
 
-      border-radius: 7.5rem;
+      margin-bottom: 1rem;
 
-      opacity: 0;
-      transition: opacity 0.3s ease;
+      .album {
+        margin: 2rem 0;
 
-      a {
-        text-decoration: none;
-        
-        span {
-          font-size: 5rem;
-          color: $dark-gray;
-          user-select: none;
+        width: 18rem;
+        min-height: 30rem;
+
+        .album-banner {
+          width: 60%;
+          height: 18rem;
+
+          p {
+            bottom: 0.5rem;
+          }
+        }
+
+        .listen-button {
+          margin: 0.5rem 0 1rem 0;
+
+          width: 3rem;
+          height: 3rem;
+
+          a {
+            span {
+              font-size: 1.5rem;
+            }
+          }
+        }
+
+        .song-list {
+          height: 50%;
+
+          .song-holder {
+            width: 90%;
+
+            .song {
+              width: 70%;
+            }
+          }
         }
       }
     }
-  
-    &:hover .play-button { opacity: 1; }
+  }
+}
+
+// Portrait mode tablets.
+@media screen and (max-width: 52rem) {
+  #albums {
+    min-height: 30rem;
+    width: 100%;
+
+    #album-area {
+      column-gap: 1.5rem;
+
+      .album {
+        width: 16rem;
+        min-height: 30rem;
+
+        .album-banner {
+          p {
+            position: relative;
+
+            bottom: 1.5rem;
+          }
+        }
+      }
+    }
   }
 }

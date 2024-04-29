@@ -1,53 +1,82 @@
-@use 'global' as *;
+@use "global" as *;
 
 // Styles for the about section.
 #about {
   position: relative;
 
   @include flex(flex-start, center, column);
-  row-gap: -5rem;
 
   width: 100%;
-  height: 40rem;
+  height: 45rem;
 
-    h2 {
-      font-size: 2rem;
-      letter-spacing: 0.5rem;
-    }
+  background-color: $white;
+
+  h2 {
+    font-size: 2rem;
+    letter-spacing: 0.5rem;
+    margin-bottom: 2rem;
+  }
 
   // Container for artist logo and information.
   #artist-area {
-    @include flex(center, center, row);
-    column-gap: 5rem;
+    @include flex(center, center, column);
+    row-gap: 2rem;
 
     width: 75%;
     height: 70%;
 
     #logo {
       @include flex(flex-end, center, row);
-      width: 25%;
 
       img {
-        max-width:12rem;
-
-        border-radius: 6rem;
-
-        object-fit: cover;
-        object-position: 35%;
-    
+        width: 12rem;
+        height: 12rem;
       }
     }
 
     #artist-info {
-      @include flex(center, flex-start, column);
+      @include flex(center, flex-start, row);
 
-      width: 30%;
-      height: 12rem;
+      width: 50%;
+      height: 10rem;
 
       p {
         font-size: 1.25rem;
-        text-align: justify;
+        text-wrap: pretty;
+        text-align: center;
         line-height: 1.75rem;
+      }
+    }
+  }
+}
+
+// Mobile screens.
+@media screen and (max-width: 27rem) {
+  #about {
+    height: 30rem;
+    width: 100%;
+
+    h2 {
+      font-size: 1.5rem;
+    }
+
+    #artist-area {
+      width: 90%;
+
+      #logo {
+        img {
+          width: 8rem;
+          height: 8rem;
+        }
+      }
+
+      #artist-info {
+        width: 100%;
+
+        p {
+          font-size: 1rem;
+          line-height: 1.5rem;
+        }
       }
     }
   }

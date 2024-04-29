@@ -1,0 +1,41 @@
+[
+  {
+    "title": "It's Raining After All",
+    "alt": "Cover of TUYU album 'It's Raining After All'",
+    "image": "/albums/its-raining-after-all.webp",
+    "link": "https://linkco.re/7g3S6Y0A?lang=en",
+    "songs": [
+      { "title": "Under the Summer Breeze", "length": "3:22" },
+      { "title": "Envy", "length": "1:48" },
+      { "title": "Compared Child", "length": "3:34" },
+      { "title": "Goodbye to Rock you", "length": "3:28" },
+      { "title": "Even Tears Withered", "length": "4:09" }
+    ]
+  },
+  {
+    "title": "I'll Put You in Misery",
+    "alt": "Cover of TUYU album 'I'll Put You in Misery'",
+    "image": "/albums/ill-put-you-in-misery.webp",
+    "link": "https://linkco.re/Snts5rmX?lang=en",
+    "songs": [
+      { "title": "Dämonisch", "length": "2:38" },
+      { "title": "Trapped in the Past", "length": "3:48" },
+      { "title": "Loser Girl", "length": "3:17" },
+      { "title": "Territory Battle", "length": "2:30" },
+      { "title": "If there was an Endpoint.", "length": "2:58" }
+    ]
+  },
+  {
+    "title": "Under Mentality",
+    "alt": "Cover of TUYU album 'Under Mentality'",
+    "image": "/albums/undermentality.webp",
+    "link": "https://tuyu.lnk.to/undermentality",
+    "songs": [
+      { "title": "Under Kids", "length": "3:24" },
+      { "title": "Under Heroine", "length": "2:46" },
+      { "title": "Overcast Skies", "length": "2:41" },
+      { "title": "Rain Fall", "length": "3:45" },
+      { "title": "Shelter from the Rain", "length": "1:15" }
+    ]
+  }
+]

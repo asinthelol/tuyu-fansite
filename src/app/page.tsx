@@ -6,23 +6,20 @@ import Hero from "./components/hero";
 import Music from "./components/music";
 import Discography from "./components/Discography";
 import Footer from "./components/footer";
-import "./styles/global.scss";
 
 export default function Index(): JSX.Element {
   return (
     <>
+      <RootLayout>
+        <main id={styles.main}>
+          <Hero />
+          <About />
 
-
-    <RootLayout>
-      <main id={styles.main}>
-        <Hero />
-        <About />
-
-        <Music />
-        <Discography />
-      </main>
-      <Footer />
-    </RootLayout>
+          <Music />
+          <Discography />
+        </main>
+        <Footer />
+      </RootLayout>
     </>
   );
 }

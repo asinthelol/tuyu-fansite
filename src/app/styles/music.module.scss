@@ -1,0 +1,261 @@
+@use "global" as *;
+
+// Properties for all songs
+@mixin song-base {
+  @extend .card;
+
+  width: 24rem;
+  height: 13.5rem;
+
+  cursor: pointer;
+  overflow: hidden;
+
+  transition:
+    filter 0.3s ease,
+    transform 0.25s ease;
+
+  &:hover {
+    filter: grayscale(0.5);
+  }
+}
+
+// Styles for Discography section.
+#music {
+  @include flex(center, center, column);
+  row-gap: 3rem;
+
+  width: 100%;
+  height: 45rem;
+
+  background-color: $light-gray;
+
+  // The title of the section.
+  h2 {
+    font-size: 2rem;
+    letter-spacing: 0.5rem;
+    margin-bottom: 2rem;
+  }
+
+  // Container for the song cards.
+  #song-area {
+    position: relative;
+
+    bottom: 5rem;
+
+    @include flex;
+    column-gap: 2rem;
+
+    width: 90%;
+    height: 80%;
+
+    .arrow-button {
+      cursor: pointer;
+
+      @include flex;
+      position: relative;
+
+      width: 3rem;
+      height: 3rem;
+
+      border: none;
+      border-radius: 1.5rem;
+
+      transition: background-color 0.3s ease;
+
+      span {
+        font-size: 3rem;
+        color: $dark-gray;
+        user-select: none;
+      }
+
+      &:hover,
+      &:focus {
+        background-color: $opac-dark-gray;
+      }
+    }
+  }
+
+  // The actual cards.
+  .song {
+    @include song-base;
+
+    .song-image {
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+    }
+
+    &:hover {
+      filter: grayscale(0.5);
+    }
+
+    // Play button that appears on hover.
+    .play-button {
+      position: absolute;
+
+      top: 50%;
+      left: 50%;
+
+      width: 100%;
+      height: 100%;
+
+      border-radius: 7.5rem;
+
+      opacity: 0;
+
+      transform: translate(-50%, -50%);
+
+      transition: opacity 0.3s ease;
+
+      a {
+        text-decoration: none;
+
+        @include flex;
+
+        width: 100%;
+        height: 100%;
+
+        border-radius: 2rem;
+
+        span {
+          font-size: 5rem;
+          color: $dark-gray;
+          user-select: none;
+        }
+      }
+    }
+
+    &:hover .play-button {
+      opacity: 1;
+    }
+  }
+
+  .song-previous {
+    position: absolute;
+    transform: translateX(-120%);
+  }
+
+  .song-current {
+    position: absolute;
+    transform: translateX(0);
+  }
+
+  .song-next {
+    position: absolute;
+    transform: translateX(120%);
+  }
+
+  // Needs this transition in react creates a div around the song cards.
+  .css-transition {
+    @include flex;
+    width: 100%;
+  }
+
+  .enter {
+    opacity: 0;
+  }
+
+  .enter-active {
+    opacity: 1;
+    transition: opacity 0.2s ease;
+  }
+  .exit {
+    opacity: 1;
+  }
+
+  .exit-active {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+}
+
+// Landscape mode tablets.
+@media screen and (width < 80rem) {
+  #music {
+    height: 45rem;
+    width: 100%;
+
+    #song-area {
+      bottom: 3rem;
+
+      .arrow-button {
+        width: 3rem;
+        height: 3rem;
+
+        span {
+          font-size: 3rem;
+        }
+      }
+
+      .song {
+        width: 16rem;
+        height: 9rem;
+      }
+    }
+  }
+}
+
+// Portrait mode tablets.
+@media screen and (width < 52rem) {
+  #music {
+    height: 30rem;
+    width: 100%;
+
+    h2 {
+      font-size: 1.5rem;
+    }
+
+    #song-area {
+      bottom: 3rem;
+
+      .arrow-button {
+        width: 2rem;
+        height: 2rem;
+
+        span {
+          font-size: 2.5rem;
+        }
+      }
+
+      .song {
+        width: 12rem;
+        height: 6.75rem;
+      }
+    }
+  }
+}
+
+// Mobile screens.
+@media screen and (max-width: 27rem) {
+  #music {
+    height: 30rem;
+
+    h2 {
+      font-size: 1.5rem;
+    }
+
+    #song-area {
+      bottom: 3rem;
+
+      .arrow-button {
+        width: 2rem;
+        height: 2rem;
+
+        span {
+          font-size: 2.5rem;
+        }
+      }
+
+      .song {
+        width: 16rem;
+        height: 9rem;
+      }
+
+      .song-previous,
+      .song-next {
+        display: none;
+      }
+    }
+  }
+}
