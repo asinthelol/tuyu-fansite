@@ -1,8 +1,8 @@
 # TUYU Fansite
-### A website built with React, Typescript, and Next.js.
+### A website built with React, Typescript, and Sass.
 
 ## How To Use
-**To run Visual Circle, follow these steps**
+**To run, follow these steps**
 
 1. Clone the repository in terminal:
 ```bash
